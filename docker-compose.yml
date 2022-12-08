@@ -4,8 +4,10 @@ services:
     build: .
     restart: always
     tty: true
+    environment:
+      DBT_PROFILES_DIR: /project/dbt_demo/profiles
     volumes:
-      - ./dbt:/dbt
+      - ./dbt:/project
     depends_on:
       database:
         condition: service_healthy
@@ -17,8 +19,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: datawarehouse
-      DBT_SCHEMA: dbt
-      DBT_RAW_DATA_SCHEMA: raw
     ports:
       - 5432:5432
     healthcheck:
