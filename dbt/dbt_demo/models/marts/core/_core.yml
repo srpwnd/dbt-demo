@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Dimension customers. Contains information about customers enriched by customer order details.
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+  - name: fact_orders
+    description: Contains information about orders enriched with payments
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
